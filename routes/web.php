@@ -18,10 +18,13 @@ use Inertia\Inertia;
 
 Route::redirect('/', 'login');
 
-Route::prefix('prototype')->group(function() {
+Route::prefix('prototype')->name('prototype.')->group(function() {
     Route::get('/login', function () {
         return Inertia::render('Prototype/Login');
-    });
+    })->name('login');
+    Route::get('/register', function () {
+        return Inertia::render('Prototype/Register');
+    })->name('register');
 });
 
 Route::get('/dashboard', function () {
