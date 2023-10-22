@@ -16,21 +16,12 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('admin', function () {
-    return 'Hi Admin';
-})->middleware('role:admin');
+Route::redirect('/', 'login');
 
-Route::get('user', function () {
-    return 'Hi user';
-})->middleware('role:user');
-
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+Route::prefix('prototype')->group(function() {
+    Route::get('/login', function () {
+        return Inertia::render('Prototype/Login');
+    });
 });
 
 Route::get('/dashboard', function () {
