@@ -16,21 +16,24 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('admin', function () {
-    return 'Hi Admin';
-})->middleware('role:admin');
+Route::redirect('/', 'login');
 
-Route::get('user', function () {
-    return 'Hi user';
-})->middleware('role:user');
-
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+Route::prefix('prototype')->name('prototype.')->group(function() {
+    Route::get('/login', function () {
+        return Inertia::render('Prototype/Login');
+    })->name('login');
+    Route::get('/register', function () {
+        return Inertia::render('Prototype/Register');
+    })->name('register');
+    Route::get('/dashboard', function () {
+        return Inertia::render('Prototype/Dashboard');
+    })->name('dashboard');
+    Route::get('/subscriptionPlan', function () {
+        return Inertia::render('Prototype/SubscriptionPlan');
+    })->name('subscriptionPlan');
+    Route::get('/movie/{slug}', function () {
+        return Inertia::render('Prototype/Movie/Show');
+    })->name('movie.Show');
 });
 
 Route::get('/dashboard', function () {
