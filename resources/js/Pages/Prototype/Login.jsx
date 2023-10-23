@@ -36,11 +36,13 @@ export default function Login(second) {
                                 </div>
                             </div>
                             <div className="grid space-y-[14px] mt-[30px]">
+                            <Link href={route('prototype.dashboard')}>
                                 <PrimaryButton type="submit" variant="primary">
                                     <span className="text-base font-semibold">
                                         Start Watching
                                     </span>
                                 </PrimaryButton>
+                            </Link>
                                 <Link href={route('prototype.register')}>
                                     <PrimaryButton variant="white-outline">
                                         <span className="text-base text-white">

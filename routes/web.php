@@ -25,6 +25,12 @@ Route::prefix('prototype')->name('prototype.')->group(function() {
     Route::get('/register', function () {
         return Inertia::render('Prototype/Register');
     })->name('register');
+    Route::get('/dashboard', function () {
+        return Inertia::render('Prototype/Dashboard');
+    })->name('dashboard');
+    Route::get('/subscriptionPlan', function () {
+        return Inertia::render('Prototype/SubscriptionPlan');
+    })->name('subscriptionPlan');
 });
 
 Route::get('/dashboard', function () {
