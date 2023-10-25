@@ -38,7 +38,7 @@ export default function FeatureMovie({
                     <img src="/icons/ic_play.svg" width="50" alt=""/>
                 </div>
             </div>
-            <Link href={route('prototype.movie.Show',slug)} className="absolute inset-0 z-50"></Link>
+            <Link href={route('user.movie.show',slug)} className="absolute inset-0 z-50"></Link>
         </div>
     )
 }
