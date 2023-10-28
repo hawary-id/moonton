@@ -1,16 +1,17 @@
-import TextInput from "@/Components/TextInput";
+import { usePage } from "@inertiajs/react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 
 export default function Authenticated({children}) {
+    const { props } = usePage();
     return (
         <>
             <div className="hidden mx-auto max-w-screen lg:block">
-                <Sidebar/>
+                <Sidebar activePlan={props.auth.activePlan}/>
 
                 <div className="ml-[300px] px-[50px]">
                     <div className="py-10 flex flex-col gap-[50px]">
-                        <Topbar/>
+                        <Topbar name={props.auth.user.name}/>
                         <main className="">{children}</main>
                     </div>
                 </div>

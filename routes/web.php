@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\MovieController;
+use App\Http\Controllers\User\SubscriptionPlanController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,6 +37,16 @@ Route::prefix('prototype')->name('prototype.')->group(function() {
     Route::get('/movie/{slug}', function () {
         return Inertia::render('Prototype/Movie/Show');
     })->name('movie.Show');
+});
+
+Route::middleware(['auth','role:user'])->prefix('user')->name('user.')->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/movie/{movie:slug}', [MovieController::class, 'show'])
+        ->name('movie.show')->middleware('checkUserSubscription:true');
+    Route::get('/subscription-plan', [SubscriptionPlanController::class, 'index'])->name('subscriptionPlan.index')
+        ->middleware('checkUserSubscription:false');
+    Route::post('/subscription-plan/{subscriptionPlan}/store', [SubscriptionPlanController::class, 'store'])
+        ->name('subscriptionPlan.store')->middleware('checkUserSubscription:false');
 });
 
 Route::get('/dashboard', function () {
