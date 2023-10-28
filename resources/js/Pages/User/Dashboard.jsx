@@ -15,7 +15,7 @@ export default function Dashbaord(props) {
         "draggable": ">1"
     }
     return (
-        <Authenticated auth={props.auth}>
+        <Authenticated>
             <Head>
                 <title>Dashboard</title>
                 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />

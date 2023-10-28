@@ -1,6 +1,8 @@
 import { Link } from "@inertiajs/react";
+import SubscriptionDetail from "./SubscriptionDetail";
 
-export default function Sidebar(second) {
+export default function Sidebar({activePlan}) {
+    console.log(activePlan);
     return (
         <aside className="fixed z-50 w-[300px] h-full">
             <div className="flex flex-col p-[30px] pr-0 border-r border-gray-[#F1F1F1] overflow-y-auto h-full">
@@ -50,7 +52,7 @@ export default function Sidebar(second) {
                 
                     <div>
                         <div className="mb-4 text-gray-1 side-link">Others</div>
-                        <Link href={route('prototype.subscriptionPlan')} className="side-link">
+                        <Link href={route('user.subscriptionPlan.index')} className="side-link">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd"
@@ -85,19 +87,14 @@ export default function Sidebar(second) {
                         </a>
                     </div>
                     
-                    <div className="mt-auto pr-[30px]">
-                        <div className="p-5 bg-white rounded-[25px] outline outline-1 outline-[#f1f1f1]">
-                            <div className="mb-8 text-lg font-semibold text-black">
-                                Basic
-                            </div>
-                            <div className="mb-2 text-sm text-black">
-                                5 of 30 hari
-                            </div>
-                            <div className="rounded-full w-full h-[6px] bg-[#f1f1f1]">
-                                <div className="w-2/12 h-full rounded-full bg-alerange"></div>
-                            </div>
-                        </div>
-                    </div>
+                    {activePlan && (
+                        <SubscriptionDetail
+                            name={activePlan.name}
+                            activeDays={activePlan.activeDays}
+                            remainingActiveDays={activePlan.remainingActiveDays}
+                            isPremium={activePlan.name === 'Premium'}
+                        />
+                    )}
                 </div>
             </div>
         </aside>
